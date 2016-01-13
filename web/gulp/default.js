@@ -39,7 +39,6 @@ function watch_task(debug) {
         p = spawn('gulp', ['watch'], {stdio:'inherit', env: process.env})
     } else {
         gutil.log(chalk.blue('======= Start Watch ======='))
-        console.log('???????')
         p = spawn('gulp', ['watch'], {stdio:'inherit', env:process.env})
     }
 }
