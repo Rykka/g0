@@ -34,11 +34,12 @@ function start_server(){
     ENV.NODE_ENV = "development"
     ENV.PORT = "3000"
     ENV.LIVERELOAD = "TRUE"
-    s = spawn('node',['/web/app/bin/www'], {
-        env : ENV
+    s = spawn('node',['bin/www'], {
+        env : ENV,
+        stdio:'inherit',
     })
 
-    console.log('start server:'+ s.pid)
+    gutil.log('start server: port: ' + ENV.PORT + ' bid:'+ s.pid)
 
     if (!is_start) { 
         lr.listen() 
@@ -46,46 +47,6 @@ function start_server(){
     } else {
         lr.reload() 
     }
-
-    // Start nodemon server
-//     nodemon({
-//         script: 'bin/www',
-//         ext : 'js',
-//         watch: 'server#<{(||)}>#*.js',
-//         ignore: ['client#<{(||)}>#*.*'],
-//         exec: process.env.DEBUG ? 'node --debug' : 'node',
-//         verbose: true,
-//         env : {
-//             "NODE_ENV": "development",
-//             "PORT": "3000",
-//             "LIVERELOAD": "TRUE",
-//         },
-//         stdout: true
-//     }).on('start', function() { // The start event will emit on every reload.
-//         if (!is_start) {
-//             gutil.log(chalk.green('Start server at 3000'))
-//             is_start = true
-// // livereload server should be same with server reload.
-//             // TODO
-//             // To active the livereload server on main process, we should use
-//             // fork and send message.
-//             lr.listen() 
-//         }
-//     }).on('restart', function() {
-//         // NOTE: Emit reload after server started,
-//         // so no CONNECTION-FAILED page will appear.
-//         setTimeout(function() { 
-//             gutil.log(chalk.green('Restart server'))
-//             lr.reload()
-//         }, 40);
-//     }).on('exit', function(){
-//         gutil.log('[nodemon] quit')
-//                                 
-//     // NO LOG
-//     // }).on('log', function(log){
-//     //     gutil.log('[nodemon] ' + log.message)
-//     })
-}
 
 
 // NOTE:
