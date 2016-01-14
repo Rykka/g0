@@ -47,6 +47,7 @@ function start_server(){
     } else {
         lr.reload() 
     }
+}
 
 
 // NOTE:
